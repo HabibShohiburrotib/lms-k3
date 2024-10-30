@@ -1,10 +1,9 @@
 <script setup>
 import { ref, computed } from 'vue';
-import NavbarTeacher from '@/layout/NavbarTeacher.vue';
-import SidebarTeacher from '@/layout/SidebarTeacher.vue';
+import NavbarSA from '@/layout/NavbarSA.vue';
+import SidebarSA from '@/layout/SidebarSA.vue';
 import ButtonSuccess from '@/components/ButtonSuccess.vue';
 import ButtonTransparanComponen from '@/components/ButtonTransparanComponen.vue';
-import ButtonMerah from '@/components/ButtonMerah.vue';
 import { category } from '@/data/index.js';
 
 const Category = ref(category);
@@ -120,60 +119,65 @@ const showToast = () => {
     }, 3000); // Hide toast after 3 seconds
 };
 
-const closeToast = () => {
-    isToastVisible.value = false;
-};
-</script>
+// const closeToast = () => {
+//     isToastVisible.value = false;
+// };
+// </script>
 
 <template>
     <div class="navbg-sa">
         <!-- NAVBAR START -->
-        <NavbarTeacher />
+        <NavbarSA />
         <!-- NAVBAR END -->
 
         <!-- SIDEBAR START -->
-        <SidebarTeacher />
+        <SidebarSA />
         <!-- SIDEBAR END -->
 
         <div id="content" class="dashboard-sa">
             <div class="container mt-80">
                 <div class="row">
                     <div class="d-flex justify-content-between mb-3">
-                        <div class="search-input w-25 me-md-1">
-                            <input type="text" class="form-control rounded-3 h-40" v-model="searchQuery"
-                                placeholder="Search" />
-                            <i class="bi bi-search"></i>
+                        <div class="d-flex align-items-center">
+                            <div class="search-input w-100 me-2">
+                                <input type="text" class="form-control rounded-3 h-40" v-model="searchQuery" placeholder="Search" />
+                                <i class="bi bi-search"></i>
+                            </div>
+
+                            <div class="dropdown sort-dropdown">
+                                <button class="btn sort-button fs-16 d-flex align-items-center" data-bs-toggle="dropdown">
+                                    Newest <i class="bi bi-chevron-down ms-1"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Newest</a></li>
+                                    <li><a class="dropdown-item" href="#">Oldest</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <ButtonSuccess class="fs-16 px-2 rounded-3 h-37" @click="showAddCategoryModal">Add Category
-                        </ButtonSuccess>
+
+                        <button class="btn btn-blue fs-16 px-2 rounded-3 h-37" @click="showAddCategoryModal">Add Category</button>
 
                         <!-- Add Modal -->
                         <div v-if="isModalVisible" class="modal-backdrop" @click="closeAddCategoryModal"></div>
-                        <div v-if="isModalVisible" class="modal fade show d-block" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true" @click.self="closeAddCategoryModal">
+                        <div v-if="isModalVisible" class="modal fade show d-block" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" @click.self="closeAddCategoryModal">
                             <div class="modal-dialog custom-modal modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header mb--3">
                                         <h5 class="fs-16 fw-medium" id="exampleModalLabel">
                                             <i class="bi bi-file-earmark-plus me-1"></i>Add Category
                                         </h5>
-                                        <button type="button" class="btn-close fs-12 c-close"
-                                            @click="closeAddCategoryModal"></button>
+                                        <button type="button" class="btn-close fs-12 c-close" @click="closeAddCategoryModal"></button>
                                     </div>
                                     <hr class="mt-0">
                                     <div class="ps-3 mt-3 mb-2">
                                         <div class="d-flex align-items-center">
                                             <label for="categoryName" class="me-3 fs-16 mb-0">Name Category</label>
-                                            <input type="text" id="categoryName" class="form-control w-66 h-43"
-                                                placeholder="Enter category name" />
+                                            <input type="text" id="categoryName" class="form-control w-66 h-43" placeholder="Enter category name" />
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center mb-5">
-                                        <ButtonTransparanComponen
-                                            class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
-                                            @click="closeAddCategoryModal">Cancel</ButtonTransparanComponen>
-                                        <ButtonSuccess class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
-                                            @click="saveCategory">Save</ButtonSuccess>
+                                        <ButtonTransparanComponen class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium" @click="closeAddCategoryModal">Cancel</ButtonTransparanComponen>
+                                        <ButtonSuccess class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium" @click="saveCategory">Save</ButtonSuccess>
                                     </div>
                                 </div>
                             </div>
@@ -195,23 +199,19 @@ const closeToast = () => {
                                         <td>{{ category.name }}</td>
                                         <td class="ps-4">
                                             <div class="dropdown ps-2">
-                                                <button class="btn border-0 dropdown-toggle" type="button"
-                                                    data-bs-toggle="dropdown">
-                                                    <p class="bi bi-three-dots-vertical"
-                                                        style="margin-bottom: -8px; margin-top: -5px;"></p>
+                                                <button class="btn border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                    <p class="bi bi-three-dots-vertical" style="margin-bottom: -8px; margin-top: -5px;"></p>
                                                 </button>
                                                 <ul class="dropdown-menu border-0">
                                                     <h5 class="ms-3 fs-16 fw-normal">Action</h5>
                                                     <li>
-                                                        <a class="dropdown-item fw-normal fs-16" href="#"
-                                                            @click="showEditCategoryModal(category)">
+                                                        <a class="dropdown-item fw-normal fs-16" href="#" @click="showEditCategoryModal(category)">
                                                             <i class="bi bi-pencil-square me-1 fs-16"></i>
                                                             Edit
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item fw-normal" href="#"
-                                                            @click="showDeleteCategoryModal(category)">
+                                                        <a class="dropdown-item fw-normal" href="#" @click="showDeleteCategoryModal(category)">
                                                             <i class="bi bi-trash me-1 fs-16"></i>
                                                             Delete
                                                         </a>
@@ -223,22 +223,33 @@ const closeToast = () => {
                                     <tr>
                                         <td colspan="3" class="p-1">
                                             <nav>
-                                                <ul class="pagination custom-pagination justify-content-center">
-                                                    <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                                                        <a class="page-link" href="#" @click.prevent="goToPage(currentPage - 1)">
-                                                            <i class="bi bi-chevron-left"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li v-for="page in pageNumbers" :key="page" class="page-item" :class="{ active: page === currentPage }">
-                                                        <a class="page-link" href="#" @click.prevent="goToPage(page)" v-if="page !== '...'">{{ page }}</a>
-                                                        <span class="page-link" v-else>...</span>
-                                                    </li>
-                                                    <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                                                        <a class="page-link" href="#" @click.prevent="goToPage(currentPage + 1)">
-                                                            <i class="bi bi-chevron-right"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex align-items-center">
+                                                        <label for="itemsPerPage" class="me-2">Items per page:</label>
+                                                        <select id="itemsPerPage" class="form-select w-auto" v-model="itemsPerPage">
+                                                            <option value="10">10</option>
+                                                            <option value="20">20</option>
+                                                            <option value="50">50</option>
+                                                        </select>
+                                                    </div>
+                                                    <span class="fs-16">{{ (currentPage - 1) * itemsPerPage + 1 }} - {{ Math.min(currentPage * itemsPerPage, filteredData.length) }} of {{ filteredData.length }} items</span>
+                                                    <ul class="pagination custom-pagination mb-0">
+                                                        <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                                                            <a class="page-link" href="#" @click.prevent="goToPage(currentPage - 1)">
+                                                                <i class="bi bi-chevron-left"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li v-for="page in pageNumbers" :key="page" class="page-item" :class="{ active: page === currentPage }">
+                                                            <a class="page-link" href="#" @click.prevent="goToPage(page)" v-if="page !== '...'">{{ page }}</a>
+                                                            <span class="page-link" v-else>...</span>
+                                                        </li>
+                                                        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+                                                            <a class="page-link" href="#" @click.prevent="goToPage(currentPage + 1)">
+                                                                <i class="bi bi-chevron-right"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </nav>
                                         </td>
                                     </tr>
@@ -247,78 +258,53 @@ const closeToast = () => {
 
                             <!-- Edit Modal -->
                             <div v-if="isEditModalVisible" class="modal-backdrop" @click="closeEditCategoryModal"></div>
-                            <div v-if="isEditModalVisible" class="modal fade show d-block" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true"
-                                @click.self="closeEditCategoryModal">
+                            <div v-if="isEditModalVisible" class="modal fade show d-block" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" @click.self="closeEditCategoryModal">
                                 <div class="modal-dialog custom-modal modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header mb--3">
                                             <h5 class="fs-16 fw-medium" id="exampleModalLabel">
                                                 <i class="bi bi-pencil-square me-1"></i>Edit Category
                                             </h5>
-                                            <button type="button" class="btn-close fs-12 c-close"
-                                                @click="closeEditCategoryModal"></button>
+                                            <button type="button" class="btn-close fs-12 c-close" @click="closeEditCategoryModal"></button>
                                         </div>
                                         <hr class="mt-0">
                                         <div class="ps-3 mt-3 mb-2">
                                             <div class="d-flex align-items-center">
-                                                <label for="editCategoryName" class="me-3 fs-16 mb-0">Name
-                                                    Category</label>
-                                                <input type="text" id="editCategoryName" v-model="currentCategory.name"
-                                                    class="form-control w-66 h-43" placeholder="Enter category name" />
+                                                <label for="editCategoryName" class="me-3 fs-16 mb-0">Name Category</label>
+                                                <input type="text" id="editCategoryName" v-model="currentCategory.name" class="form-control w-66 h-43" placeholder="Enter category name" />
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
-                                            <ButtonTransparanComponen
-                                                class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
-                                                @click="closeEditCategoryModal">Cancel</ButtonTransparanComponen>
-                                            <ButtonSuccess class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
-                                                @click="saveCategory">Save</ButtonSuccess>
+                                            <ButtonTransparanComponen class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium" @click="closeEditCategoryModal">Cancel</ButtonTransparanComponen>
+                                            <ButtonSuccess class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium" @click="saveCategory">Save</ButtonSuccess>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Delete Modal -->
-                            <div v-if="isDeleteModalVisible" class="modal-backdrop" @click="closeDeleteCategoryModal">
-                            </div>
-                            <div v-if="isDeleteModalVisible" class="modal fade show d-block" role="dialog"
-                                aria-labelledby="deleteModalLabel" aria-hidden="true"
-                                @click.self="closeDeleteCategoryModal">
+                            <div v-if="isDeleteModalVisible" class="modal-backdrop" @click="closeDeleteCategoryModal"></div>
+                            <div v-if="isDeleteModalVisible" class="modal fade show d-block" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" @click.self="closeDeleteCategoryModal">
                                 <div class="modal-dialog custom-modal modal-dialog-centered">
-                                    <div class="modal-content pt-3">
-                                        <div
-                                            class="modal-header mb-3 d-flex flex-column justify-content-center align-items-center text-center">
-                                            <PhTrashSimple :size="50" color="#ff4c4c" />
-                                            <h5 class="mb-4 mt-3 fs-16 fw-medium text-merah">Delete Category</h5>
-                                            <h5 class="fs-16 fw-light opacity-50">
-                                                Are you sure you want to delete this category? Once deleted, this data
-                                                cannot be restored.
+                                    <div class="modal-content">
+                                        <div class="modal-header mb--3">
+                                            <h5 class="fs-16 fw-medium" id="exampleModalLabel">
+                                                <i class="bi bi-trash me-1"></i>Delete Category
                                             </h5>
+                                            <button type="button" class="btn-close fs-12 c-close" @click="closeDeleteCategoryModal"></button>
+                                        </div>
+                                        <hr class="mt-0">
+                                        <div class="ps-3 mt-3 mb-2">
+                                            <p>Are you sure you want to delete the category "{{ currentCategory.name }}"?</p>
                                         </div>
                                         <div class="d-flex justify-content-center mb-5">
-                                            <ButtonTransparanComponen
-                                                class="my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium"
-                                                @click="closeDeleteCategoryModal">No, Cancel</ButtonTransparanComponen>
-                                            <ButtonMerah class="ms-3 my-0 h-40 w-30 rounded-3 fs-16 fw-medium"
-                                                @click="deleteCategory">Yes, Delete</ButtonMerah>
+                                            <ButtonTransparanComponen class="mt-4 my-0 h-40 w-30 me-5 rounded-3 c-border bg-white fs-16 fw-medium" @click="closeDeleteCategoryModal">Cancel</ButtonTransparanComponen>
+                                            <ButtonSuccess class="ms-3 mt-4 my-0 h-40 w-30 rounded-3 fs-16 fw-medium" @click="deleteCategory">Delete</ButtonSuccess>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div aria-live="polite" aria-atomic="true" class="position-fixed bs-toast">
-                                <div v-if="isToastVisible"
-                                    class="toast align-items-center text-white bg-light-success border-0 show"
-                                    role="alert">
-                                    <div class="d-flex">
-                                        <div class="toast-body">
-                                            Category deleted successfully!
-                                        </div>
-                                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                                            @click="closeToast" aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -326,7 +312,6 @@ const closeToast = () => {
         </div>
     </div>
 </template>
-
 
 <style scoped>
 .bg-light-success {
@@ -377,7 +362,7 @@ const closeToast = () => {
 }
 
 .table-custom thead {
-    background-color:rgba(216, 216, 216, 1) !important;
+    background-color: rgba(216, 216, 216, 1) !important;
     color: white;
 }
 

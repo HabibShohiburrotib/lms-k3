@@ -13,15 +13,13 @@
   --paraColor: #636363;
   --ratingColor: #f1cc38;
   --colorWhite: #ffffff;
-  --colorSidebar: #9197b3;
+  --colorSidebar: #303030;
   --colorUngu: #1e0342;
   --colorBiru: #f4f7fe;
   --colorBlueSide: #1c1e53;
   --colorBgDashboard: #ededed;
   --colorBgSearch: #f0f4ff;
   --colorBgRoom: #f4f6fc;
-  --colorNavTeacher: #0d92f4;
-  --colorSideTeacher: #0d92f4;
   --paraFont: 'Rubik', sans-serif;
   --headingFont: 'Montserrat', sans-serif;
   --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -70,6 +68,19 @@
   min-height: 100vh;
   width: 100vw;
 }
+.notification-profile {
+  margin-left: auto; 
+}
+
+.notification-profile .btn {
+  margin-right: 10px; 
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+}
+
 /* ===== NAV SA END ===== */
 
 /* ==== PAGINATION SA ==== */

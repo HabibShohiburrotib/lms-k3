@@ -48,7 +48,7 @@ onMounted(() => {
 
 <template>
     <header class="nav-teacher">
-        <nav class="navbar  navbar-dashboard navbar-expand-lg navbar-light fixed-top">
+        <nav class="navbar navbar-dashboard navbar-expand-lg navbar-light fixed-top">
             <div class="toggle">
                 <button class="navbar-toggler border-0" @click="toggleSidebar" type="button" aria-controls="navbarNav"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -61,27 +61,35 @@ onMounted(() => {
                         <img src="../assets/images/navbar-superadmin.png" alt="Logo" class="img-navbar" />
                     </a>
                 </span>
-                
-                <div class="dropdown profile-section dropdown-toggle-custom rounded-25 p-2 me-md-2" type="button"
-                    id="dropdownMenuButton" data-bs-toggle="dropdown">
-                    <img :src="profileImage" alt="Profile Picture" class="rounded-circle ms-1" />
-                    <span class="profile-name fs-16">{{ user.name }} <br /> <small class="d-block mt--3 fs-12">{{
-                        user.role
-                            }}</small></span>
-                    <button class="btn border-0 dropdown-toggle" aria-expanded="false">
-                        <i class="bi bi-chevron-down ms-0 me--8"></i>
+
+                <div class="notification-profile d-flex align-items-center">
+                    <button class="btn border-0 position-relative me-3">
+                        <i class="bi bi-bell" style="font-size: 1.5rem;"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        </span>
                     </button>
-                    <ul class="dropdown-menu border-0 mt--1 bg shadow" aria-labelledby="dropdownMenuButton">
-                        <li>
-                            <button class="dropdown-item fs-14" @click="Logout">
-                                <i class="bi  bi-box-arrow-right me-2 fw-light"></i> Logout
-                            </button>
-                        </li>
-                    </ul>
+
+                    <div class="dropdown profile-section dropdown-toggle-custom rounded-25 p-2" type="button"
+                        id="dropdownMenuButton" data-bs-toggle="dropdown">
+                        <img :src="profileImage" alt="Profile Picture" class="rounded-circle ms-1" />
+                        <span class="profile-name fs-16">{{ user.name }} <br /> <small class="d-block mt--3 fs-12">{{ user.role }}</small></span>
+                        <button class="btn border-0 dropdown-toggle" aria-expanded="false">
+                            <i class="bi bi-chevron-down ms-0 me--8"></i>
+                        </button>
+                        
+                        <ul class="dropdown-menu border-0 mt--1 bg shadow" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <button class="dropdown-item fs-14" @click="Logout">
+                                    <i class="bi bi-box-arrow-right me-2 fw-light"></i> Logout
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+
 
     <div class="side">
         <transition name="slide">

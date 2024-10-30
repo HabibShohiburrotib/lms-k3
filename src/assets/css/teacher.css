@@ -13,15 +13,15 @@
   --paraColor: #636363;
   --ratingColor: #f1cc38;
   --colorWhite: #ffffff;
-  --colorSidebar: #9197b3;
+  --colorSidebar: #303030;
   --colorUngu: #1e0342;
   --colorBiru: #f4f7fe;
   --colorBlueSide: #1c1e53;
   --colorBgDashboard: #ededed;
   --colorBgSearch: #f0f4ff;
   --colorBgRoom: #f4f6fc;
-  --colorNavTeacher: #0d92f4;
-  --colorSideTeacher: #0d92f4;
+  --colorNavTeacher: #ffffff;
+  --colorSideTeacher: #ffffff;
   --paraFont: 'Rubik', sans-serif;
   --headingFont: 'Montserrat', sans-serif;
   --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -31,6 +31,7 @@
   background-color: var(--colorNavTeacher);
   height: 80px;
   z-index: 1000;
+  border-bottom: 2px solid #BBBBBB;
 }
 
 .sidebar-teacher {
@@ -42,9 +43,11 @@
   background-color: var(--colorSideTeacher) !important;
   transition: width 0.3s ease;
   z-index: 100;
+  border-right: 2px solid #BBBBBB; 
 }
 .sidebar-teacher .collapsed {
   width: 70px;
+  border-right: 2px solid #BBBBBB; 
 }
 .sidebar-teacher .collapsed a span {
   white-space: nowrap;
@@ -92,19 +95,20 @@
 }
 .toggle-teacher {
   font-size: 24px;
-  color: #ffffff;
+  color: #303030;
   margin-right: 2px;
 }
 .sidebar-teacher .color-sidebar {
-  color: #ffffff !important;
+  color: #303030 !important;
   font-weight: 500;
 }
 .sidebar-teacher .nav-link:hover {
-  color: #906e2a !important;
+  color: #0D92F4 !important;
 }
 .sidebar-teacher .active-sidebar {
-  color: #ffb82a !important;
+  color: #0D92F4 !important;
   font-weight: 700;
+  background-color: #E7F4FECC;
 }
 .navbg-teacher #content {
   margin-left: 270px;

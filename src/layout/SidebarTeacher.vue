@@ -2,7 +2,7 @@
     <div id="sidebar" class="sd sidebar-teacher" :class="['side', { collapsed }]" ref="sidebar">
         <ul>
             <li class="menu-header">
-                <span class="menu-text-teacher text-white">Menu</span>
+                <span class="menu-text-teacher text-black">Menu</span>
                 <button id="toggle-btn" class="btn btn-primary" ref="toggleBtn">
                     <span class="toggle-teacher">&#9776;</span>
                 </button>
